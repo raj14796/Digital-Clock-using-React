@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react'
 
-function App() {
+const App = () => {
+  const [hour,setHour] = useState(22);
+  const [minute,setMinute] = useState(59);
+  const [second,setSecond] = useState(50);
+  setTimeout(() => {
+    if(second!==59)
+      setSecond(second+1);
+    else{
+      setSecond(0);
+      if(minute!==59)
+        setMinute(minute+1)
+      else{
+        setMinute(0);
+        if(hour!==23)
+          setHour(hour+1);
+        else{
+          setHour(0);
+        }
+      }
+    }
+  }, 1000);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {hour+":"+minute+":"+second}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
